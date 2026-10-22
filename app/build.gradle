@@ -1,0 +1,21 @@
+
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.amigos.voicelite'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.amigos.voicelite'
+        minSdk 23
+        targetSdk 28
+        versionCode 1
+        versionName '1.0'
+    }
+}
+
+dependencies {
+    implementation 'com.google.mlkit:translate:17.0.3'
+}
