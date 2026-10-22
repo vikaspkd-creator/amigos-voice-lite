@@ -33,8 +33,23 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      
+      - name: Check Android Manifest
+        run: |
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          path = "app/src/main/AndroidManifest.xml"
+          try:
+              ET.parse(path)
+              print("Manifest XML is valid")
+          except ET.ParseError as e:
+              print("MANIFEST XML ERROR:", e)
+              raise
+          PY
+
       - name: Build Android APK
-        run: gradle --no-daemon assembleDebug
+        run: gradle --no-daemon assembleDebug --stacktrace --info
+
 
       - name: Save APK
         uses: actions/upload-artifact@v4
